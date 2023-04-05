@@ -5,6 +5,8 @@ const naturalLanguage = async (terms) => {
   const apiKey = process.env.URL;
   let  url = process.env.URL;
 
+
+
   url = `${url}/v1/analyze?version=2022-04-07`;
 
   const data = {
@@ -13,15 +15,12 @@ const naturalLanguage = async (terms) => {
       entities: {
         emotion: true,
         sentiment: true,
-        limit: 1
+        limit: 3
       },
       keywords: {
         emotion: true,
         sentiment: true,
-        limit: 1
-      },
-      concepts: {
-        limit: 1
+        limit: 3
       }
     }
   };
@@ -40,10 +39,10 @@ return axios({
   data: data
 })
 .then(response => {
-  console.log(response.data);
+  return response.data;
 })
 .catch(error => {
-  console.log(error);
+  return error;
 });
 
 }
