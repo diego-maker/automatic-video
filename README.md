@@ -4,6 +4,16 @@
 📄<br>Este é um projeto para realizar uma automação para criação de videos.
 </h1>
 
+## 📚 Ebook
+
+>Com esse projeto é possível criar vídeos simples, com imagens, textos e áudio.
+O conteúdo do vídeo tiramos do Wikipedia, no qual “limpamos” em tópicos para conseguir montar a rotina.
+Com o conteúdo limpo é utilizado uma IA para abstrair keywords desses textos.
+Por exemplo quando pesquisamos o termo “banana” no Wikipedia, teremos
+Muitos textos na qual a IA usa para gerar as keywords, que usaremos para buscar as imagens e criar o texto mais natural
+Um exemplo é que nesse retorno do conteúdo “banana” é tipos de bananas por exemplo banana da terra, banana maçã. Que usamos essas keywords para encontrar as imagens.
+
+
 ---
 ## Getting Started
 
