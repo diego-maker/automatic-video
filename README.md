@@ -4,7 +4,7 @@
 📄<br>Este é um projeto para realizar uma automação para criação de videos.
 </h1>
 
-## 📚 Ebook
+## 📚 Sobre o projeto
 
 >Com esse projeto é possível criar vídeos simples, com imagens, textos e áudio.
 O conteúdo do vídeo tiramos do Wikipedia, no qual “limpamos” em tópicos para conseguir montar a rotina.
