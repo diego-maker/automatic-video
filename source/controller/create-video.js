@@ -17,25 +17,34 @@ export async function createMasterVideo (data){
   // Tell fluent-ffmpeg where it can find FFmpeg
 ffmpeg.setFfmpegPath(ffmpegStatic);
 
+let logos = []
+// Duração de cada imagem em segundos
+let logoDurations = [];
+let duration = 0;
+let timerLogo = [];
+
+for (let index = 0; index < data.length; index++) {
+   logos[index] = await loadImage(data[index]);
+  logoDurations[index] = 10
+  timerLogo[index] = duration + 10;
+  duration = duration + 10;
+}
+
 
 
 const canvas = new Canvas(1280, 720);
 const context = canvas.getContext('2d');
 
-const logo1 = await loadImage('https://images.pexels.com/photos/16055440/pexels-photo-16055440.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280');
-const logo2 = await loadImage('https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280');
-
 // The video length and frame rate, as well as the number of frames required
 // to create the video
-const duration = 15;
+
 const frameRate = 2;
 const frameCount = Math.floor(duration * frameRate);
 
-// Duração de cada imagem em segundos
-const logoDurations = [7, 8];
+
 
 // Store the images in an array
-const logos = [logo1, logo2];
+
 let currentLogoIndex = 0;
 
 for (let i = 0; i < frameCount; i++) {
@@ -51,6 +60,9 @@ for (let i = 0; i < frameCount; i++) {
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   // Render the current image
+  if(timerLogo[currentLogoIndex] < seconds){
+    currentLogoIndex++;
+  }
   const logoDuration = logoDurations[currentLogoIndex];
   renderFrame(context, logoDuration, time, logos[currentLogoIndex], seconds, canvas, logoDurations);
 
@@ -59,11 +71,7 @@ for (let i = 0; i < frameCount; i++) {
   const paddedNumber = String(i).padStart(4, '0');
   await fs.promises.writeFile(`tmp/output/frame-${paddedNumber}.png`, output);
 
-  // If it's time to switch to the next image, update the index
-  const logoEndTime = currentLogoIndex === 0 ? logoDuration : logoDurations[0];
-  if (time >= logoEndTime && currentLogoIndex === 0) {
-    currentLogoIndex = 1;
-  }
+
 }
 
 // Stitch all frames together with FFmpeg
@@ -113,7 +121,6 @@ function renderFrame(context, duration, time, logo, seconds, canvas, logoDuratio
 function applyCubicInOutEasing(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
-
 
 
 function splitTextIntoLines(text, maxLineLength, context) {

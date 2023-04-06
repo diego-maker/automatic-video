@@ -26,8 +26,16 @@ router.post('/ibm', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
+
+    const { principal, idioma } = req.body;
+
+    const title = principal;
+    const lang = idioma;
+    const url = `https://${lang}.wikipedia.org/api/rest_v1/page/html/${title}`;
+
     const topicos = await wikipediaTerms(req);
 
+    console.log(topicos)
     const topicosSanitize = topicos
       .filter((topicos) => {
         return (
@@ -39,13 +47,19 @@ router.post('/', async (req, res) => {
       .map((topicos) => {
         return { titulo: `${topicos.titulo}`, conteudo: topicos.conteudo };
       });
- 
-    topicosSanitize.forEach((element,index)=>{
 
-      if(element.titulo == 'Principal' ){
-        console.log(element.conteudo)
-      }
-    })
+    // const language = await naturalLanguage(url);
+    
+    let images = await searchImages(title);
+  
+    console.log(images)
+     const response = await createMasterVideo(images);
+      
+      res.status(200).send({
+        data: response
+      })
+ 
+
 
   } catch (error) {
     console.error(error);
@@ -56,9 +70,10 @@ router.post('/', async (req, res) => {
 
 
 
+
 router.get('/', (req, res) => {
 
-  searchImages('banana-pão').then((imageUrl) => {
+  searchImages('falsas bananas').then((imageUrl) => {
     console.log(imageUrl);
     res.status(200).send({
       data: imageUrl
@@ -72,7 +87,13 @@ router.get('/', (req, res) => {
 
 router.get('/create-video', async (req, res) => {
 
-  const response = await createMasterVideo('kias');
+  let video = [
+    'https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg',  
+    'https://images.pexels.com/photos/16055440/pexels-photo-16055440.jpeg',
+    'https://images.pexels.com/photos/15824258/pexels-photo-15824258.jpeg' 
+  ]
+  
+  const response = await createMasterVideo(video);
 
   res.status(200).send({
     data: response
