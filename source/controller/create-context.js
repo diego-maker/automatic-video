@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const naturalLanguage = async (terms) => {
+const contexLanguage = async (terms) => {
   // const apiKey = process.env.URL;
   // let  url = process.env.URL;
 
@@ -10,17 +10,10 @@ const naturalLanguage = async (terms) => {
   url = `${url}/v1/analyze?version=2022-04-07`;
 
   const data = {
-    url: terms,
+    text: terms,
     features: {
-      entities: {
-        emotion: true,
-        sentiment: true,
-        limit: 3
-      },
-      keywords: {
-        emotion: true,
-        sentiment: true,
-        limit: 3
+      categories:{
+        limit:1
       }
     }
   };
@@ -48,4 +41,4 @@ return axios({
 }
 
 
-export default naturalLanguage;
+export default contexLanguage;

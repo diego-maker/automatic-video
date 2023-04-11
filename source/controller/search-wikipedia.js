@@ -12,11 +12,12 @@ const wikipediaTerms = async (data)  => {
 
   return axios.get(url)
     .then(response => {
+      // console.log(response.data)
       const topicos = sanitizeTerms(response.data);
       return topicos;
     })
     .catch(error => {
-      throw error;
+      return false;
     });
 }
 

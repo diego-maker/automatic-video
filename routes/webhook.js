@@ -4,6 +4,7 @@ import express from 'express';
 import searchImages from '../source/controller/search-images.js';
 import wikipediaTerms from '../source/controller/search-wikipedia.js';
 import naturalLanguage from '../source/controller/language-terms.js';
+import contexLanguage from '../source/controller/create-context.js';
 import { createMasterVideo } from '../source/controller/create-video.js';
 
 const router = express.Router();
@@ -35,12 +36,17 @@ router.post('/', async (req, res) => {
 
     const topicos = await wikipediaTerms(req);
 
-    console.log(topicos)
-    const topicosSanitize = topicos
+    if (topicos === false) {
+      res.status(400).send({
+        error: "Pesquisa não encontrada no wikipedia, tente outro termo de busca!"
+      })
+      return
+    }
+
+    let topicosSanitize = topicos
       .filter((topicos) => {
         return (
-          topicos.titulo == 'Principal' ||
-          topicos.titulo == 'Características' ||
+          topicos.titulo == 'History' ||
           topicos.titulo == 'História'
         );
       })
@@ -48,17 +54,29 @@ router.post('/', async (req, res) => {
         return { titulo: `${topicos.titulo}`, conteudo: topicos.conteudo };
       });
 
+
+
+
     // const language = await naturalLanguage(url);
-    
-    let images = await searchImages(title);
-  
-    console.log(images)
-     const response = await createMasterVideo(images);
-      
-      res.status(200).send({
-        data: response
-      })
- 
+
+    // let images = await searchImages(title,idioma);
+
+     const images = [
+      'https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg',
+      'https://images.pexels.com/photos/1266446/pexels-photo-1266446.jpeg',
+      'https://images.pexels.com/photos/1191548/pexels-photo-1191548.jpeg',
+      'https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg',
+      'https://images.pexels.com/photos/2438/nature-forest-waves-trees.jpg'
+    ]
+
+    topicosSanitize[0].conteudo.shift();
+
+    const response = await createMasterVideo(images, topicosSanitize);
+
+    res.status(200).send({
+      data: topicosSanitize
+    })
+
 
 
   } catch (error) {
@@ -88,11 +106,11 @@ router.get('/', (req, res) => {
 router.get('/create-video', async (req, res) => {
 
   let video = [
-    'https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg',  
+    'https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg',
     'https://images.pexels.com/photos/16055440/pexels-photo-16055440.jpeg',
-    'https://images.pexels.com/photos/15824258/pexels-photo-15824258.jpeg' 
+    'https://images.pexels.com/photos/15824258/pexels-photo-15824258.jpeg'
   ]
-  
+
   const response = await createMasterVideo(video);
 
   res.status(200).send({

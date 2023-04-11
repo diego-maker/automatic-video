@@ -1,12 +1,17 @@
 import axios from "axios";
+import imageLocale from "../imageLocale.js";
 
+// const apiKey = process.env.IMAGE_KEY;
 
 const apiKey = process.env.IMAGE_KEY;
 
 
 const searchImages = async (searchTerm) => { //recebe o termo para buscar a imagem principal
+const searchImages = async (searchTerm,local) => { //recebe o termo para buscar a imagem principal
 
-  const url = `https://api.pexels.com/v1/search?query=${searchTerm}&per_page=3`;
+  const locale = imageLocale(local)
+  
+  const url = `https://api.pexels.com/v1/search?query=${searchTerm}&per_page=3&locale=${locale}`;
   const headers = { Authorization: `${apiKey}` };
   let images = []
   try {
