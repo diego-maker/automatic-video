@@ -3,10 +3,8 @@ import imageLocale from "../imageLocale.js";
 
 // const apiKey = process.env.IMAGE_KEY;
 
-const apiKey = process.env.IMAGE_KEY;
 
 
-const searchImages = async (searchTerm) => { //recebe o termo para buscar a imagem principal
 const searchImages = async (searchTerm,local) => { //recebe o termo para buscar a imagem principal
 
   const locale = imageLocale(local)
