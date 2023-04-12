@@ -6,13 +6,12 @@ const contexLanguage = async (terms) => {
   // let  url = process.env.URL;
 
 
-
   url = `${url}/v1/analyze?version=2022-04-07`;
 
   const data = {
     text: terms,
     features: {
-      categories:{
+      keywords:{
         limit:1
       }
     }

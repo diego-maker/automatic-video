@@ -1,10 +1,9 @@
 //LIBS T
 import express from 'express';
 // controllers
-import searchImages from '../source/controller/search-images.js';
+
 import wikipediaTerms from '../source/controller/search-wikipedia.js';
 import naturalLanguage from '../source/controller/language-terms.js';
-import contexLanguage from '../source/controller/create-context.js';
 import { createMasterVideo } from '../source/controller/create-video.js';
 
 const router = express.Router();
@@ -55,23 +54,10 @@ router.post('/', async (req, res) => {
       });
 
 
-
-
-    // const language = await naturalLanguage(url);
-
-    // let images = await searchImages(title,idioma);
-
-     const images = [
-      'https://images.pexels.com/photos/351283/pexels-photo-351283.jpeg',
-      'https://images.pexels.com/photos/1266446/pexels-photo-1266446.jpeg',
-      'https://images.pexels.com/photos/1191548/pexels-photo-1191548.jpeg',
-      'https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg',
-      'https://images.pexels.com/photos/2438/nature-forest-waves-trees.jpg'
-    ]
-
     topicosSanitize[0].conteudo.shift();
 
-    const response = await createMasterVideo(images, topicosSanitize);
+
+    const response = await createMasterVideo(idioma, topicosSanitize);
 
     res.status(200).send({
       data: topicosSanitize

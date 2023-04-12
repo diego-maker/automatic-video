@@ -4,6 +4,8 @@ import ffmpeg from 'fluent-ffmpeg';
 import { Canvas, loadImage } from 'canvas';
 import { stitchFramesToVideo } from './create-file-video.js'
 import reandingTime from '../readingTime.js';
+import contexLanguage from '../controller/create-context.js';
+import searchImages from '../controller/search-images.js';
 
 // Clean up the temporary directories first
 for (const path of ['out', 'tmp/output']) {
@@ -13,7 +15,7 @@ for (const path of ['out', 'tmp/output']) {
   await fs.promises.mkdir(path, { recursive: true });
 }
 
-export async function createMasterVideo(images, contextVideo) {
+export async function createMasterVideo(idioma, contextVideo) {
 
 
   let logos = []
@@ -27,12 +29,17 @@ export async function createMasterVideo(images, contextVideo) {
 
   for (let index = 0; index < makerContext; index++) {
    const timeTex =  reandingTime(contextMaker[index]);
+ 
+   const searchImage = await contexLanguage(contextMaker[index]);
 
-   logos[index] = await loadImage(images[index]);
+   let images = await searchImages(searchImage.keywords[0].text,idioma);
+   logos[index] = await loadImage(images);
+   console.log(`I found the image ${index} url ${images}`)
    logoDurations[index] = timeTex
    timerLogo[index] = duration + logoDurations[index];
    duration = duration + logoDurations[index];
-    
+
+   
   }
 
 
