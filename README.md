@@ -35,5 +35,5 @@ Após isso vamos entender a estrutura do projeto e rotas que vcoê pode usar par
 - Rota `routes/webhook/create-video` GET -> para gerar um video local utilizando [canvas](https://www.npmjs.com/package/canvas) e [ffmpeg](https://ffmpeg.org/)
 - Rode [http://localhost:3000](http://localhost:3000) as requisições HTTP em seu postman ou API da sua preferência.
 
-## ESSE PROJETO AINDA ESTA EM DESENVOLVIMENTO :)
+## fique a vontade para contribuir com esse proeto :)
 
