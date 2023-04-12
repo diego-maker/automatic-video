@@ -1,6 +1,6 @@
 import ffmpeg from 'fluent-ffmpeg';
 
-export async function stitchFramesToVideo(
+export async function stitchFramesToVideo( //CRIA O ARQUIVO DO VIDEO
   framesFilepath,
   soundtrackFilePath,
   outputFilepath,
@@ -8,7 +8,7 @@ export async function stitchFramesToVideo(
   frameRate,
 ) {
 
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => { 
     ffmpeg()
 
       // Tell FFmpeg to stitch all images together in the provided directory

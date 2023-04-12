@@ -15,8 +15,7 @@ for (const path of ['out', 'tmp/output']) {
   await fs.promises.mkdir(path, { recursive: true });
 }
 
-export async function createMasterVideo(idioma, contextVideo) {
-
+export async function createMasterVideo(idioma, contextVideo) { // CRIA A MAIN DO VIDEO, DEFINIMOS TEMPO DE VIDEO E QUANTIDADE DE IMAGENS AQUI
 
   let logos = []
   // // Duração de cada imagem em segundos

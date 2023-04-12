@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const contexLanguage = async (terms) => {
+const contexLanguage = async (terms) => { // BUSCA O CONTEXTO DE CADA IMAGEM
   // const apiKey = process.env.URL;
   // let  url = process.env.URL;
 

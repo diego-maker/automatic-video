@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const naturalLanguage = async (terms) => {
+const naturalLanguage = async (terms) => { // BUSCA PELA URL SE PRECISO KEYWORDS.... DESALIBITEI POR HORA
   // const apiKey = process.env.URL;
   // let  url = process.env.URL;
 
