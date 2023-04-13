@@ -1,8 +1,6 @@
 
 [Read this page in English](https://github.com/diego-maker/automatic-video/blob/main/README-en.md)
 
-[Leia esta página em português](https://github.com/diego-maker/automatic-video/blob/main/README.md)
-
 
 
 <h1 align="center">
