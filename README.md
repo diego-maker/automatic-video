@@ -6,7 +6,7 @@
 
 ## 📚 Sobre o projeto
 
->Com este projeto, é possível criar vídeos simples, com imagens, textos e áudio de forma eficiente. O conteúdo do vídeo é extraído da Wikipedia, e é organizado em tópicos para tornar a rotina mais fácil de ser seguida. Após a organização do conteúdo, uma inteligência artificial é utilizada para extrair palavras-chave desses textos.
+>Com este projeto, é possível criar vídeos simples, com imagens, textos e áudio de forma eficiente. O conteúdo do vídeo é extraído da Wikipedia, e é organizado em tópicos para tornar a rotina mais fácil de ser seguida. Após a organização do conteúdo, uma inteligência artificial é utilizada para extrair palavras-chave desses textos e assim conseguir buscar imagens na API do Google.
 
 >Por exemplo, ao pesquisar o termo "banana" na Wikipedia, a IA usa muitos textos para gerar as palavras-chave que serão usadas para buscar imagens e criar um texto mais natural. Um exemplo seria o retorno de conteúdo para a palavra-chave "banana", que poderia incluir diferentes tipos de bananas, como banana-da-terra e banana-maçã. Usamos essas palavras-chave para encontrar as imagens mais relevantes para o vídeo.
 
