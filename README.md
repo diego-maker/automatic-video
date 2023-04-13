@@ -23,9 +23,31 @@ npm install
 # and
 npm start
 ```
+
+## Gerando o video
+
+Utilize o Insomnia ou o Postman para enviar a requisição local no endereço `http://localhost:3000/webhook`
+Você deve fornecer um json com a seguinte estrutura por exemplo:
+
+```
+{
+	"idioma":"pt",
+	"busca":"pedro alvares cabral"
+}
+```
+---
+Na propriedade "Idioma" é um recurso importante para o Wikipedia, pois permite definir o idioma que será utilizado na busca do conteúdo. Ao selecionar o idioma desejado, o sistema irá realizar a busca de forma mais eficiente e precisa, retornando informações relevantes e em conformidade com a língua escolhida.
+
+| código        | Idioma        |
+| ------------- | ------------- |
+|      pt       | Portugês      |
+|      en       | Inglês        |
+|      es       | Espanhol      |
+
+Na propriedade "Busca" é um recurso utilizado que permite aos usuários encontrar conteúdos específicos de acordo com seus interesses. Quando se trata de um vídeo, a propriedade "Busca" pode ser usada para procurar palavras-chave relevantes no título, descrição ou tags do vídeo, facilitando a descoberta e o acesso a conteúdos específicos.
+
+---
 Após isso vamos entender a estrutura do projeto e rotas que vcoê pode usar para testar localmente
-
-
 
 - Rota `routes/webhook/` POST ->  criar o video principal 
 - Rota `routes/webhook/ibm` POST ->  analisar o conteúdo com a inteligência artificial da IBM  [natural-language-understanding](https://cloud.ibm.com/apidocs/natural-language-understanding)
