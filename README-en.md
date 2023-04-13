@@ -1,3 +1,5 @@
+[Leia esta página em português](https://github.com/diego-maker/automatic-video/blob/main/README.md)
+
 <h1 align="center">
 📄<br>This is a project to perform automation for video creation..
 </h1>
