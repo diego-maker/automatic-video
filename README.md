@@ -27,13 +27,19 @@ Após isso vamos entender a estrutura do projeto e rotas que vcoê pode usar par
 
 
 
-
-
-- Rota `routes/webhook/ibm` POST ->  para analisar o conteúdo com a inteligência artificial da IBM  [natural-language-understanding](https://cloud.ibm.com/apidocs/natural-language-understanding)
-- Rota `routes/webhook/` POST ->  para baixar o conteúdo do [wikipedia API](https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Central_de_pesquisas/Portal_de_dados/API)
-- Rota `routes/webhook/` GET ->  para buscar imagens para usar no video [pexels](https://www.pexels.com/api/)
-- Rota `routes/webhook/create-video` GET -> para gerar um video local utilizando [canvas](https://www.npmjs.com/package/canvas) e [ffmpeg](https://ffmpeg.org/)
+- Rota `routes/webhook/` POST ->  criar o video principal 
+- Rota `routes/webhook/ibm` POST ->  analisar o conteúdo com a inteligência artificial da IBM  [natural-language-understanding](https://cloud.ibm.com/apidocs/natural-language-understanding)
+- Rota `routes/webhook/wiki` POST ->  baixar o conteúdo do [wikipedia API](https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Central_de_pesquisas/Portal_de_dados/API)
+- Rota `routes/webhook/` GET ->  buscar imagens para usar no video [pexels](https://www.pexels.com/api/)
+- Rota `routes/webhook/create-video` GET -> gerar um video local utilizando [canvas](https://www.npmjs.com/package/canvas) e [ffmpeg](https://ffmpeg.org/)
 - Rode [http://localhost:3000](http://localhost:3000) as requisições HTTP em seu postman ou API da sua preferência.
+
+Lembrando é imprescindível ter duas APIs KEYs para funcionamento do seu video que são:
+
+[Google search](https://developers.google.com/custom-search/v1/introduction?hl=pt-br#identify_your_application_to_google_with_api_key), usamos essa API para buscar no google images, o mais interessante é que nessa API podemos personalizar para receber [parâmetros](https://developers.google.com/custom-search/v1/reference/rest/v1/cse/list?hl=pt-br) especificos de busca de imagens
+
+[natural-language-understanding](https://cloud.ibm.com/apidocs/natural-language-understanding) Esta inteligência artificial ajudará a identificar chaves específicas em trechos de códigos retornado pelo wikipedia, permitindo a busca de imagens precisas e proporcionando uma experiência mais natural e intuitiva ao acompanhar o contexto do vídeo em cada segmento de texto, com o [DEMO](https://www.ibm.com/demos/live/natural-language-understanding/self-service/home) você pode testar carregando URL ou Textos para a IA analisar 
+
 
 ## Fique à vontade para contribuir com esse projeto. :)
 
