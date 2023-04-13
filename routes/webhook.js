@@ -1,15 +1,50 @@
 //LIBS T
 import express from 'express';
+
 // controllers
 
-import wikipediaTerms from '../source/controller/search-wikipedia.js';
+import wikipediaSearch from '../source/controller/search-wikipedia-sentece.js';
 import naturalLanguage from '../source/controller/language-terms.js';
 import { createMasterVideo } from '../source/controller/create-video.js';
+import searchImages from '../source/controller/search-images-google.js'
 
 const router = express.Router();
 
 
-router.post('/ibm', async (req, res) => {
+router.post('/', async (req, res) => { //rota principal para criar o video
+  try {
+
+    const { idioma, busca } = req.body;
+
+
+    const topicos = await wikipediaSearch(busca, idioma);
+
+    
+    if (topicos === false) {
+      res.status(400).send({
+        error: "Pesquisa não encontrada no wikipedia, tente outro termo de busca!"
+      })
+      return
+    }
+
+
+    const response = await createMasterVideo(idioma, topicos);
+
+    res.status(200).send({
+      data: response
+    })
+
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Erro ao buscar informações na Wikipedia' });
+  }
+
+});
+
+
+router.post('/ibm', async (req, res) => { //teste de envio ao waston natural-language-understanding
   try {
     const language = await naturalLanguage(req.body.principal);
 
@@ -24,60 +59,30 @@ router.post('/ibm', async (req, res) => {
 
 });
 
-router.post('/', async (req, res) => {
+router.post('/wiki', async (req, res) => { //teste de busca no wikipedia
   try {
-
-    const { principal, idioma } = req.body;
-
-    const title = principal;
-    const lang = idioma;
-    const url = `https://${lang}.wikipedia.org/api/rest_v1/page/html/${title}`;
-
-    const topicos = await wikipediaTerms(req);
-
-    if (topicos === false) {
-      res.status(400).send({
-        error: "Pesquisa não encontrada no wikipedia, tente outro termo de busca!"
+    const term = 'o que é';
+    const subject = 'banana';
+    
+    wikipediaSearch(req,term, subject)
+      .then((searchResults) => {
+        res.send({data: searchResults});
       })
-      return
-    }
-
-    let topicosSanitize = topicos
-      .filter((topicos) => {
-        return (
-          topicos.titulo == 'History' ||
-          topicos.titulo == 'História'
-        );
-      })
-      .map((topicos) => {
-        return { titulo: `${topicos.titulo}`, conteudo: topicos.conteudo };
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send({ error: 'Erro ao buscar informações no wiki', data: error });
       });
-
-
-    topicosSanitize[0].conteudo.shift();
-
-
-    const response = await createMasterVideo(idioma, topicosSanitize);
-
-    res.status(200).send({
-      data: topicosSanitize
-    })
-
-
-
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: 'Erro ao buscar informações na Wikipedia' });
+    res.status(500).send({ error: 'Erro ao buscar informações no wiki', data: error });
   }
 
 });
 
 
+router.get('/', (req, res) => { // teste de busca de imagens 
 
-
-router.get('/', (req, res) => {
-
-  searchImages('falsas bananas').then((imageUrl) => {
+  searchImages('banana', 'pt').then((imageUrl) => {
     console.log(imageUrl);
     res.status(200).send({
       data: imageUrl
@@ -89,7 +94,7 @@ router.get('/', (req, res) => {
 })
 
 
-router.get('/create-video', async (req, res) => {
+router.get('/create-video', async (req, res) => { // teste de criação de video
 
   let video = [
     'https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg',

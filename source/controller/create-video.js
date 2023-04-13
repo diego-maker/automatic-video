@@ -5,7 +5,7 @@ import { Canvas, loadImage } from 'canvas';
 import { stitchFramesToVideo } from './create-file-video.js'
 import reandingTime from '../readingTime.js';
 import contexLanguage from '../controller/create-context.js';
-import searchImages from '../controller/search-images.js';
+import searchImages from './search-images-google.js';
 
 // Clean up the temporary directories first
 for (const path of ['out', 'tmp/output']) {
@@ -23,7 +23,7 @@ export async function createMasterVideo(idioma, contextVideo) { // CRIA A MAIN D
    let duration = 0;
    let timerLogo = [];
 
-  const contextMaker  = contextVideo[0].conteudo
+  const contextMaker  = contextVideo
   let makerContext = 5 // limitando em 5 o contexto  do video
 
   for (let index = 0; index < makerContext; index++) {
