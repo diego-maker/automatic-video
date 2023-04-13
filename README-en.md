@@ -51,12 +51,12 @@ In the "Search" property, users can find specific content according to their int
 
 After that, let's understand the project structure and routes that you can use to test locally:
 
--Route routes/webhook/ POST -> create the main video.
--Route routes/webhook/ibm POST -> analyze the content with IBM's artificial intelligence [natural-language-understanding]((https://cloud.ibm.com/apidocs/natural-language-understanding))
--Route routes/webhook/wiki POST -> download content from [Wikipedia API](https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Central_de_pesquisas/Portal_de_dados/API).
--Route routes/webhook/ GET -> search for images to use in the video [Pexels](https://www.pexels.com/api/).
--Route routes/webhook/create-video GET -> generate a local video using [Canvas](https://www.npmjs.com/package/canvas) and [FFmpeg](https://ffmpeg.org/).
--Run http://localhost:3000 and use HTTP requests in your Postman or preferred API.
+- Route routes/webhook/ POST -> create the main video.
+- Route routes/webhook/ibm POST -> analyze the content with IBM's artificial intelligence [natural-language-understanding]((https://cloud.ibm.com/apidocs/natural-language-understanding))
+- Route routes/webhook/wiki POST -> download content from [Wikipedia API](https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:Central_de_pesquisas/Portal_de_dados/API).
+- Route routes/webhook/ GET -> search for images to use in the video [Pexels](https://www.pexels.com/api/).
+- Route routes/webhook/create-video GET -> generate a local video using [Canvas](https://www.npmjs.com/package/canvas) and [FFmpeg](https://ffmpeg.org/).
+- Run http://localhost:3000 and use HTTP requests in your Postman or preferred API.
 
 Remembering that it is essential to have two API Keys for the functioning of your video, which are:
 
