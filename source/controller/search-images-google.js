@@ -1,17 +1,21 @@
 import axios from "axios";
 
-const apiKey = process.env.APIKEY
 
-const searchImages = async (req, idioma) => {
+const searchImages = async (req, idioma,busca) => {
 
-  console.log(req)
   let str = req;
   if (str.indexOf(" ") !== -1) {
     str = str.replace(/ /g, "%20");
   }
   const searchTerm = str;
-  // console.log( term + ' ' + subject)
-  let apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&q=${searchTerm}&searchType=image&fileType=jpg&imgSize=xlarge&num=1`;
+
+
+  if (busca.indexOf(" ") !== -1) {
+    busca = busca.replace(/ /g, "%20");
+  }
+  const searchTermPrincipal = busca;
+ 
+  let apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=a2fec0f4d84354f38&q=${searchTermPrincipal}%20${searchTerm}&searchType=image&fileType=jpg&imgSize=xlarge&num=1`;
   let response = await axios.get(apiUrl);
 
 

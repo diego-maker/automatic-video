@@ -28,7 +28,7 @@ router.post('/', async (req, res) => { //rota principal para criar o video
     }
 
 
-    const response = await createMasterVideo(idioma, topicos);
+    const response = await createMasterVideo(idioma, topicos, busca);
 
     res.status(200).send({
       data: response

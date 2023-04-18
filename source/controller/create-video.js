@@ -15,7 +15,7 @@ for (const path of ['out', 'tmp/output']) {
   await fs.promises.mkdir(path, { recursive: true });
 }
 
-export async function createMasterVideo(idioma, contextVideo) { // CRIA A MAIN DO VIDEO, DEFINIMOS TEMPO DE VIDEO E QUANTIDADE DE IMAGENS AQUI
+export async function createMasterVideo(idioma, contextVideo, busca) { // CRIA A MAIN DO VIDEO, DEFINIMOS TEMPO DE VIDEO E QUANTIDADE DE IMAGENS AQUI
 
   let logos = []
   // // Duração de cada imagem em segundos
@@ -24,14 +24,15 @@ export async function createMasterVideo(idioma, contextVideo) { // CRIA A MAIN D
    let timerLogo = [];
 
   const contextMaker  = contextVideo
-  let makerContext = 5 // limitando em 5 o contexto  do video
+  let makerContext = 10 // limitando em 5 o contexto  do video
 
   for (let index = 0; index < makerContext; index++) {
    const timeTex =  reandingTime(contextMaker[index]);
  
    const searchImage = await contexLanguage(contextMaker[index]);
 
-   let images = await searchImages(searchImage.keywords[0].text,idioma);
+   console.log(searchImage.entities[0].text)
+   let images = await searchImages(searchImage.entities[0].text,idioma,busca);
    logos[index] = await loadImage(images);
    console.log(`I found the image ${index} url ${images}`)
    logoDurations[index] = timeTex

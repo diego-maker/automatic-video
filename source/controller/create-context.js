@@ -11,7 +11,7 @@ const contexLanguage = async (terms) => { // BUSCA O CONTEXTO DE CADA IMAGEM
   const data = {
     text: terms,
     features: {
-      keywords:{
+      entities:{
         limit:1
       }
     }
