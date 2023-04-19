@@ -8,7 +8,8 @@ const wikipediaSearch = async (req, idioma) => {
   }
   const searchTerm = str;
   // console.log( term + ' ' + subject)
-  let apiUrl = `https://${idioma}.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=${searchTerm}&redirects=1`;
+  let apiUrl = `https://${idioma}.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=${searchTerm}&redirects=1`; [
+   // Lista conteúdos relacionado a um termo de busca 
   let response = await axios.get(apiUrl);
 
 
@@ -24,6 +25,7 @@ const wikipediaSearch = async (req, idioma) => {
   }
 
   apiUrl = `https://${idioma}.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&pageids=${pageId}&explaintext=1`;
+  // se existir o conteudo vai retornar o primeiro da lista
   response = await axios.get(apiUrl);
 
   content  = response.data.query.pages[pageId].extract;
