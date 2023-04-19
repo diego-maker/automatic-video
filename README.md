@@ -66,5 +66,5 @@ Lembrando é imprescindível ter duas APIs KEYs para funcionamento do seu video 
 [natural-language-understanding](https://cloud.ibm.com/apidocs/natural-language-understanding) Esta inteligência artificial ajudará a identificar chaves específicas em trechos de códigos retornado pelo wikipedia, permitindo a busca de imagens precisas e proporcionando uma experiência mais natural e intuitiva ao acompanhar o contexto do vídeo em cada segmento de texto, com o [DEMO](https://www.ibm.com/demos/live/natural-language-understanding/self-service/home) você pode testar carregando URL ou Textos para a IA analisar 
 
 
-## Fique à vontade para contribuir com esse projeto :grin:
+## Fique à vontade para contribuir com esse projeto, pois ele ainda esta em desenvolvimento :grin:
 
