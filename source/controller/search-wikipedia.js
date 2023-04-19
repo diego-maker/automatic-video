@@ -1,7 +1,7 @@
 import axios from "axios";
 import sanitizeTerms from '../helper.js';
 
-const wikipediaTerms = async (data)  => { // BUSCA O CONTEÚDO DO VIDEO NO WIKIPEDIA
+const wikipediaTerms = async (data)  => { // BUSCA O CONTEÚDO DO VIDEO NO WIKIPEDIA GENERICAMENTE, ESSA FUNÇÃO DESABILITEI 
 
   const { principal, idioma } = data.body;
 
